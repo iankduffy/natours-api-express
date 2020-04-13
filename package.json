@@ -1,0 +1,13 @@
+{
+  "name": "natours-api-express",
+  "version": "1.0.0",
+  "description": "Natours Api Express - Course",
+  "main": "app.js",
+  "repository": "https://github.com/iankduffy/natours-api-express.git",
+  "author": "Ian Duffy <ian.duffy@shiftcommerce.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
