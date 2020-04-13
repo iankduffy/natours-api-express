@@ -8,7 +8,11 @@ const app = express();
 
 // Middle Ware
 app.use(express.json())
-app.use(morgan('dev'))
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
+
+app.use(express.static(`${__dirname}/public`))
 
 // Create own middleware 
 app.use((req, res, next) => {
