@@ -22,7 +22,7 @@ MongoDB is a document database with scalability and flexibility that you want wi
 
 ### Basics 
 
-Start mongodb with: `brew services start mongodb-community@4.2` and another terminal with mongo
+Start mongodb with: `brew services start mongodb-community@4.2` and another terminal with `mongo`
 
 `use <name>` is how to create or switch db
 
@@ -39,6 +39,10 @@ To find a tour we do `db.tours.find()` which returns the tour we just created -
 `{ "_id" : ObjectId("5e95f44d023de3fd55b8891f"), "name" : "Ellesmere Port", "price" : 287, "rating" : 2.1 }` 
 
 `show dbs` to show all dbs we have
+
+`show collections` to show all collections in the db
+
+`quit()` to quit mongo
 
 ### Issues 
 
