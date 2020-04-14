@@ -44,6 +44,23 @@ To find a tour we do `db.tours.find()` which returns the tour we just created -
 
 `quit()` to quit mongo
 
+### CRUD 
+
+#### Creating
+
+Creating is shown above like `db.tours.insertOne({ name: 'Ellesmere Port', price: 287, rating: 2.1 })`
+
+#### Reading 
+
+To find all tours we do `db.tours.find()`
+To find one tours `db.tours.find({name: "Ellesmere Port"})` will return the records with Ellesmere Port as name
+To find all tours with price less than 10 we do `db.tours.find({price: {$lte: 10} })` with $lte: being a object - https://docs.mongodb.com/manual/reference/operator/query-comparison/ for more details 
+
+#### Updating
+
+Updating we use `updateOne`, the first query must be the document we editing then use `$set` to add / edit new fields. However this only updates the first one, unless we do `updateMany`. 
+`db.tours.updateOne({ name: "Ellesmere Port" }, {$set: { description: "My Home Town near chester"}})`
+
 ### Issues 
 
 I had issues getting mongodb to work on until I ran - 
