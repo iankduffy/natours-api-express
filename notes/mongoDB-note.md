@@ -61,6 +61,13 @@ To find all tours with price less than 10 we do `db.tours.find({price: {$lte: 10
 Updating we use `updateOne`, the first query must be the document we editing then use `$set` to add / edit new fields. However this only updates the first one, unless we do `updateMany`. 
 `db.tours.updateOne({ name: "Ellesmere Port" }, {$set: { description: "My Home Town near chester"}})`
 
+#### Deleting
+
+Delete Many  - This will delete all tours with a rating less than 4.8
+`db.tours.deleteMany({ rating: {$lt: 4.8}})`
+Without a object it will move all the data 
+
+
 ### Issues 
 
 I had issues getting mongodb to work on until I ran - 
