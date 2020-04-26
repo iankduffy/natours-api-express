@@ -11,3 +11,4 @@ What is it?
 - Mongoose Schema: where we model our data, by describing the structure of the data, default values, and validation. 
 
 - Mongoose Model: a wrapper for the schema providing an interface to the database for CRUD operations
+
