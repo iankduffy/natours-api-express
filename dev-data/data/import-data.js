@@ -18,7 +18,6 @@ mongoose.connect(DB, {
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8'));
 
 // Import in to db 
-
 const importData = async () => {
   try {
     await Tour.create(tours);
