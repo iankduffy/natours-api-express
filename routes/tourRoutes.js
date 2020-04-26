@@ -3,6 +3,6 @@ const router = express.Router()
 const tourController = require('../controllers/tourController')
 
 router.route('/').get(tourController.getAllTours).post(tourController.createTour)
-router.get('/:id', tourController.getTourById)
+router.route('/:id').get(tourController.getTourById).patch(tourController.updateTour).delete(tourController.deleteTour)
 
 module.exports = router;
