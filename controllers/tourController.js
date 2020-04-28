@@ -2,8 +2,7 @@ const fs = require('fs')
 const Tour = require('./../models/tourModel')
 const APIFeatures = require('../utils/api-helper.js')
 const catchAsync = require('../utils/catchAsync.js')
-
-// const tours = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`))
+const AppError = require('../utils/appError.js')
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -27,9 +26,13 @@ exports.getAllTours = catchAsync(async(req, res, next) => {
   })
 })
 
-exports.getTourById = catchAsync(async (req, res) => {
+exports.getTourById = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id)
   // Same as Tour.findOne({ _id: req.params.id})
+
+  if(!tour) {
+    return next(new AppError(`No Tour Found with that id`, 404))
+  }
 
   res.status(200).json({
     status: 'success',
@@ -39,7 +42,7 @@ exports.getTourById = catchAsync(async (req, res) => {
   })
 })
 
- exports.createTour = catchAsync(async(req, res) => {
+exports.createTour = catchAsync(async(req, res) => {
   const newTour = await Tour.create(req.body)
 
   res.status(201).json({
@@ -51,11 +54,15 @@ exports.getTourById = catchAsync(async (req, res) => {
   })
 })
 
-exports.updateTour = catchAsync(async(req, res) => {
+exports.updateTour = catchAsync(async(req, res, next) => {
   const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });
+
+  if(!tour) {
+    return next(new AppError(`No Tour Found with that id`, 404))
+  }
 
   res.status(200).json({
     status: 'success',
@@ -65,8 +72,12 @@ exports.updateTour = catchAsync(async(req, res) => {
   });
 })
 
-exports.deleteTour = catchAsync(async(req, res) => {
-  await Tour.findByIdAndDelete(req.params.id);
+exports.deleteTour = catchAsync(async(req, res, next) => {
+  const tour = await Tour.findByIdAndDelete(req.params.id);
+
+  if(!tour) {
+    return next(new AppError(`No Tour Found with that id`, 404))
+  }
 
   res.status(204).json({
     status: 'success',
